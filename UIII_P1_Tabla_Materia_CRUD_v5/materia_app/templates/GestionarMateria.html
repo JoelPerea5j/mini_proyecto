@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row"> <!-- la fila -->
+<div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Columna izquierda -->
+    <h1>Mamá</h1>
+    <div class="card"> <!-- tarjeta -->
+        <div class="card-body">
+            <form action="/RegistarMateria/" method="POST"> {% csrf_token %} <!-- formulario -->
+                <div class="form-group">
+                    <input type="text" id="txtCodigo" name="txtCodigo" class="form-control"
+                    placeholder="Codigo Materias" minlength="6 " maxlength="6" required>
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="text" id="txtNombre" name="txtNombre" class="form-control"
+                    placeholder="Nombre Materias" maxlength="100" required>
+                </div>
+
+                <div class="form-group py-2">
+                    <input type="text" id="numCreditos" name="numCreditos" class="form-control"
+                    value="1" min="1" max="9" required>
+                </div>
+
+                <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+
+            </form> <!-- formulario -->
+        </div> 
+    </div><!-- tarjeta -->
+</div> <!-- Columna izquierda -->
+<div class="col-sm-12 col-md-8 col-lg-8 col-xl-4">  <!-- Columna Derecha -->
+    <h1>Listado de materias</h1>
+    <div class="table-responsive"> <!-- Tabla responsiva -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Creditos</th>
+                    <th colspan="2"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in MisMaterias %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{m.Codigo}}</td>
+                    <td>{{m.Nombre}}</td>
+                    <td>{{m.Creditos}}</td>
+                    <td> <a href="SeleccionarMateria/{{m.Codigo}}" class="btn btn-info">Editar</a></td>
+                    <td><a href="BorrarMateria/{{m.Codigo}}" class="btn btn-danger">Borrar</a></td> 
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div><!-- Tabla responsiva -->
+
+</div> <!-- Columna Derecha -->
+
+</div> <!-- la fila -->
+{% endblock %}

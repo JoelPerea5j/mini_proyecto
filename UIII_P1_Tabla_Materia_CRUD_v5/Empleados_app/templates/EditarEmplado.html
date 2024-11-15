@@ -1,0 +1,57 @@
+{% extends "Base_Empleado.html" %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <!-- La Tarjeta Card -->
+        <div class="card"> <!-- tarjeta -->
+            <div class="card-body">
+                <form action="/EditarEmpleado/" method="POST"> {% csrf_token %} <!-- formulario -->
+
+                    <div class="form-group">
+                        <input type="text" id="txtId_Empleado" name="txtId_Empleado" class="form-control"
+                        value={{LosEmpleados.Id_Empleado}} minlength="6 " maxlength="6" readonly required>
+                    </div>
+    
+                    <div class="form-group py-3">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control"
+                        value={{LosEmpleados.Nombre}} maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtApellido" name="txtApellido" class="form-control"
+                        value={{LosEmpleados.Apellido}} maxlength="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="numSalario" name="numSalario" class="form-control"
+                        value={{LosEmpleados.Salario}} min="1" max="9" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtFecha_Nacimiento" name="txtFecha_Nacimiento" class="form-control"
+                        value={{LosEmpleados.Fecha_Nacimiento}} min="1" max="9" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="numCRP" name="numCRP" class="form-control"
+                        value={{LosEmpleados.CRP}} min="1" max="9" required>
+                    </div>
+    
+                    <div class="form-group py-2">
+                        <input type="text" id="numRFC" name="numRFC" class="form-control"
+                        value={{LosEmpleados.RFC}} min="1" max="9" required>
+                    </div>
+    
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+    
+                </form> <!-- formulario -->
+            </div> 
+        </div><!-- tarjeta -->
+
+        <!-- Fin De La Tarjeta Card -->
+    </div><!-- La Columna -->
+
+</div><!-- La Fila -->
+
+
+    {% endblock %}
